@@ -1,66 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Grades Calculator</title>
-	<style>
-		h1 {
-			color: red;
-			text-transform: uppercase;
-		}
-	</style>
-</head>
-<body>
-	<script>
-		let qSubjects = Number(prompt("How many subjects do you have?"));
-		if (qSubjects === "") {
-			document.write('<h1>THE FEIDLS ARE EMPTY!</h1>');
-		}
-		else if (qSubjects === null) {
-			document.write('<h1>YOU PRESSED CANCELED BUTTON!</h1>');
-		}
-		else if (qSubjects) {
-			let arr = [];
-			for(let i = 1; i <= qSubjects; i++) {
-				arr.push(Number(prompt("Enter Marks of subjects: " + i)));
-			}
-			document.write("All subjects marks: " + arr.join(', '));
-			let obtainedMarks = arr.reduce((a,b)=>a+b, 0);
-			document.write("<br> Total Marks: " + (qSubjects*100));
-			document.write("<br> Obtained Marks: " + obtainedMarks);
-			let percentage = ((obtainedMarks/(qSubjects*100))*100);
-			percentage = Math.round(percentage);
-			document.write("<br> Percentage: " + percentage + "% <br>");
-			if(percentage >= 90) {
-				document.write("Grade: A+");
-			}
-			else if(percentage >= 80) {
-				document.write("Grade: A");
-			}
-			else if(percentage >= 70) {
-				document.write("Grade: B");
-			}
-			else if(percentage >= 60) {
-				document.write("Grade: C");
-			}
-			else if(percentage >= 33) {
-				document.write("Grade: D");
-			}
-			else {
-				document.write("<span>Failed!</span>");
-			}
-			console.table(arr);
-			console.log(arr.reduce((a,b)=>a+b, 0));
-		} else {
-			document.open();
-			document.write("<h1>You didn't filled the fileds!</h1>");
-			document.close();
-		}
-		
-
-		
-
-	</script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grades Calculator</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+      h1 {
+        color: red;
+        text-transform: uppercase;
+      }
+      span {
+        font-weight: bold;
+      }
+      button {
+        cursor: pointer;
+        outline: 0;
+        line-height: 3;
+        border: 2px solid #ddd;
+        background-color: tomato;
+        color: #fff;
+        box-shadow: 4px 5px 10px 0 #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let qSubjects = Number(prompt("How many subjects do you have?"));
+      if (qSubjects === "") {
+        document.write("<h1>THE FEIDLS ARE EMPTY!</h1>");
+        document.write(
+          `<button onclick="window.location.reload();">Ask Questions</button>`
+        );
+      } else if (qSubjects === null) {
+        document.write("<h1>YOU PRESSED CANCELED BUTTON!</h1>");
+        document.write(
+          `<button onclick="window.location.reload();">Ask Questions</button>`
+        );
+      } else if (qSubjects) {
+        let arr = [];
+        for (let i = 1; i <= qSubjects; i++) {
+          arr.push(Number(prompt("Enter Marks of subjects: " + i)));
+        }
+        document.write("All subjects marks: " + arr.join(", "));
+        let obtainedMarks = arr.reduce((a, b) => a + b, 0);
+        document.write("<br> Total Marks: " + qSubjects * 100);
+        document.write("<br> Obtained Marks: " + obtainedMarks);
+        let percentage = (obtainedMarks / (qSubjects * 100)) * 100;
+        percentage = Math.round(percentage);
+        document.write(`<br> Percentage: <span>${percentage}%</span> <br>`);
+        if (percentage >= 90) {
+          document.write("Grade: <span>A+</span>");
+        } else if (percentage >= 80) {
+          document.write("Grade: <span>A</span>");
+        } else if (percentage >= 70) {
+          document.write("Grade: <span>B</span>");
+        } else if (percentage >= 60) {
+          document.write("Grade: <span>C</span>");
+        } else if (percentage >= 33) {
+          document.write("Grade: <span>D</span>");
+        } else {
+          document.write('<span style="color: red">Failed!</span>');
+        }
+        document.write(
+          `<br><br><button onclick="window.location.reload();">Ask Again</button>`
+        );
+        console.table(arr);
+        console.log(arr.reduce((a, b) => a + b, 0));
+      } else {
+        document.open();
+        document.write("<h1>You didn't filled the fileds!</h1>");
+        document.write(
+          `<button onclick="window.location.reload();">Ask Questions</button>`
+        );
+        document.close();
+      }
+    </script>
+  </body>
 </html>
